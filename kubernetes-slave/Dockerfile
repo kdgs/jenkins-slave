@@ -10,7 +10,8 @@ ARG AGENT_WORKDIR=/home/${user}/agent
 
 ENV HOME /home/${user}
 
-RUN addgroup -g ${gid} ${group} RUN adduser -h $HOME -u ${uid} -G ${group} -D ${user}
+RUN addgroup -g ${gid} ${group}
+RUN adduser -h $HOME -u ${uid} -G ${group} -D ${user}
 
 LABEL Description="This is a base image, which provides the Jenkins agent executable (slave.jar)" Vendor="Jenkins project" Version="3.23"
 
