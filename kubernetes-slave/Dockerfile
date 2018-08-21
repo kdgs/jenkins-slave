@@ -8,8 +8,6 @@ ARG slave_url=https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/${
 ARG VERSION=3.23
 ARG AGENT_WORKDIR=/home/${user}/agent
 
-COPY ./repositories /etc/apk/repositories
-
 ENV HOME /home/${user}
 RUN addgroup -g ${gid} ${group}
 RUN adduser -h $HOME -u ${uid} -G ${group} -D ${user}
