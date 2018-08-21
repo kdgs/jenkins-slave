@@ -14,12 +14,11 @@ RUN groupadd -g ${gid} ${group}
 RUN useradd -b $HOME -u ${uid} -g ${group} ${user}
 LABEL Description="This is a base image, which provides the Jenkins agent executable (slave.jar)" Vendor="Jenkins project" Version="3.23"
 
-RUN http_proxy=http://10.8.5.222:3128 https_proxy=http://10.8.5.222:3128 yum update -y && yum install -y --setopt=tsflags=nodocs install curl bash git openssh-client\
-  openssl procps python3 python3-dev ansible docker openrc gcc linux-headers musl-dev\
+RUN yum update -y && yum install -y --setopt=tsflags=nodocs install curl bash git openssh-client openssl procps python3 python3-dev ansible docker openrc gcc linux-headers musl-dev \
   && python3 -m ensurepip \
   && curl --create-dirs -sSLo /usr/share/jenkins/slave.jar ${slave_url} \
   && chmod 755 /usr/share/jenkins \
-  && chmod 644 /usr/share/jenkins/slave.jar \
+  && chmod 644 /usr/share/jenkins/slave.jar
 
 RUN pip3 install setuptools ansible-lint flake8 molecule docker-py
 
