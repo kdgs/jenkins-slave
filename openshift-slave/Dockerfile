@@ -15,7 +15,7 @@ RUN useradd -b $HOME -u ${uid} -g ${group} ${user}
 LABEL Description="This is a base image, which provides the Jenkins agent executable (slave.jar)" Vendor="Jenkins project" Version="3.23"
 
 RUN yum update -y && yum install -y --setopt=tsflags=nodocs epel-release && yum update -y \
-  && yum install --setopt=tsflags=nodocs -y curl bash git openssh-clients openssl procps python3 python3-dev ansible docker openrc gcc linux-headers musl-dev python-pip \
+  && yum install --setopt=tsflags=nodocs -y curl bash git openssh-clients openssl procps python34 python34-devel ansible docker openrc gcc linux-headers musl-dev python-pip \
   && curl --create-dirs -sSLo /usr/share/jenkins/slave.jar ${slave_url} \
   && chmod 755 /usr/share/jenkins \
   && chmod 644 /usr/share/jenkins/slave.jar
