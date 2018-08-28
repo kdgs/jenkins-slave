@@ -21,6 +21,7 @@ RUN yum update -y && yum install -y --setopt=tsflags=nodocs epel-release && yum 
   && chmod 644 /usr/share/jenkins/slave.jar
 
 RUN pip install setuptools ansible-lint flake8 molecule docker-py
+RUN chown -R ${user}:${group} /home/${user}
 
 USER ${user}
 ENV AGENT_WORKDIR=${AGENT_WORKDIR}
